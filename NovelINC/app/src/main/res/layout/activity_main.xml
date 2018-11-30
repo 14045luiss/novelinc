@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg1"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/blank_top">
+
+    </View>
+
+
+    <TextView
+        android:id="@+id/txv_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="108dp"
+        android:text="Novelinc"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAlignment="center"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/txv_version"
+        android:id="@+id/blank_mid">
+    </View>
+
+    <TextView
+        android:id="@+id/txv_login_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="163dp"
+        android:text="Masukkan username dan password"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="78dp"
+        android:background="#f4b7b7"
+        android:outlineSpotShadowColor="#000"
+        android:layout_centerVertical="true"
+        android:id="@+id/linearlayout">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#f4b7b7"
+            android:id="@+id/txt_username"
+            android:hint="Username or Email"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background= "#f4b7b7"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/txt_password"
+            android:hint="Password"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#98bfde"
+        android:textColor="@color/colorPrimary"
+        android:text="LOGIN!"
+        android:id="@+id/btn_login"
+        android:layout_below="@+id/linearlayout"
+        android:onClick="button_onClick"
+        tools:ignore="OnClick" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/btn_login"
+        android:id="@+id/blank_bottom">
+    </View>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Remember Me"
+        android:id="@+id/chk_remember"
+        android:layout_below="@+id/blank_bottom"/>
+
+</RelativeLayout>
