@@ -77,8 +77,7 @@ class buku extends REST_Controller
         } else {
             // Cek apakah ada di database
             $get_buku_baseID = $this->db->query("
-SELECT 1 FROM buku
-WHERE id_buku = {$data_buku ['id_buku']}")->num_rows();
+            SELECT 1 FROM buku WHERE id_buku = {$data_buku ['id_buku']}")->num_rows();
             if ($get_buku_baseID === 0) {
                 // Jika tidak ada
                 $this->response(array(
@@ -86,32 +85,39 @@ WHERE id_buku = {$data_buku ['id_buku']}")->num_rows();
                     "message "=> "ID buku tidak ditemukan "
                 ));
             } else {
-                // Jika ada
-                $data_buku['photo_url'] = $this->uploadPhoto();
-                if ($data_buku['photo_url']) {
-                    // Jika upload foto berhasil, eksekusi update
-                    $update = $this->db->query("
-		UPDATE buku SET
-		judul ='{$data_buku['judul']}',
-		penulis ='{$data_buku ['penulis']}',
-		tahun_terbit ='{$data_buku ['tahun_terbit']}',
-        penerbit ='{$data_buku ['penerbit']}',
-        sinopsis ='{$data_buku ['sinopsis']}',
-		photo_url ='{$data_buku ['photo_url']}'
-		WHERE id_buku ='{$data_buku ['id_buku']}'");
-                } else {
-                    // Jika foto kosong atau upload foto tidak berhasil, eksekusi update
-                    $update = $this->db->query("
-		UPDATE buku
-		SET
-		judul ='{$data_buku ['judul']}',
-		penulis ='{$data_buku ['penulis']}',
-		tahun_terbit ='{$data_buku ['tahun_terbit']}'
-        penerbit ='{$data_buku ['penerbit']}',
-        sinopsis ='{$data_buku ['sinopsis']}',
-		WHERE id_buku = {$data_buku ['id_buku']}");
-                }
-                if ($update) {
+                           // Jika ada
+               
+               // Cek apakah user upload photo dalam update ini
+               if ( isset($_FILES['photo_url']) && $_FILES['photo_url']['size'] > 0 ) {
+
+                   // Cek apakah ada photo di data sebelumnya
+                   $get_photo_url =$this->db->query("
+                       SELECT photo_url
+                       FROM buku
+                       WHERE id_buku = {$data_buku['id_buku']}")->result();
+                } 
+
+                 if(!empty($get_photo_url)){
+                        // Dapatkan nama file
+                        $photo_nama_file = basename($get_photo_url[0]->photo_url);
+                        // Dapatkan letak file di folder upload
+                        $photo_lokasi_file = realpath(FCPATH . $this->folder_upload . $photo_nama_file);
+                        
+                        // Jika file ada, hapus
+                        if(file_exists($photo_lokasi_file)) {
+                            // Hapus file
+                           unlink($photo_lokasi_file);
+                       }
+                   }
+
+                   $update_photo = true;
+                   // Lakukan upload photo
+                   $data_buku['photo_url'] = $this->uploadPhoto();
+               } else {
+                   $update_photo = false;
+               }
+
+                if ($update_photo) {
                     $this->response(array(
                         "status"=>"success",
                         "result"=> array(
