@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menuTambahNovel"
+        android:title="Insert Data Novel"/>
+    <item android:id="@+id/menuListBuku"
+        android:title="Daftar Novel"/>
+    <item android:id="@+id/menuInsertDataBuku"
+        android:title="Insert Data Novel"/>
+</menu>
+
+

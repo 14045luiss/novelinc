@@ -28,12 +28,6 @@
         android:textSize="26dp"
         android:textStyle="bold"
         android:layout_alignParentLeft="true" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@id/txv_version"
-        android:id="@+id/blank_mid">
-    </View>
 
     <TextView
         android:id="@+id/txv_login_info"
@@ -45,44 +39,42 @@
         android:text="Masukkan username dan password"
         android:textAlignment="center"
         android:textStyle="bold" />
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:orientation="vertical"
-        android:layout_height="78dp"
-        android:background="#f4b7b7"
-        android:outlineSpotShadowColor="#000"
-        android:layout_centerVertical="true"
-        android:id="@+id/linearlayout">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#f4b7b7"
-            android:id="@+id/txt_username"
-            android:hint="Username or Email"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background= "#f4b7b7"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/txt_password"
-            android:hint="Password"/>
-    </LinearLayout>
 
-    <Button
+    <EditText
+        android:id="@+id/txt_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#98bfde"
-        android:textColor="@color/colorPrimary"
-        android:text="LOGIN!"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="245dp"
+        android:hint="Username or Email" />
+
+    <EditText
+        android:id="@+id/txt_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <Button
         android:id="@+id/btn_login"
-        android:layout_below="@+id/linearlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="124dp"
+        android:layout_marginLeft="124dp"
+        android:layout_marginTop="350dp"
+        android:background="#98bfde"
         android:onClick="button_onClick"
+        android:text="LOGIN!"
+        android:textColor="@color/colorPrimary"
         tools:ignore="OnClick" />
     <View
         android:layout_width="match_parent"
@@ -90,12 +82,14 @@
         android:layout_below="@+id/btn_login"
         android:id="@+id/blank_bottom">
     </View>
+
     <CheckBox
+        android:id="@+id/chk_remember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Remember Me"
-        android:id="@+id/chk_remember"
-        android:layout_below="@+id/blank_bottom"/>
+        android:layout_below="@+id/blank_bottom"
+        android:layout_alignEnd="@+id/btn_login"
+        android:layout_marginTop="4dp"
+        android:text="Remember Me" />
 
 </RelativeLayout>

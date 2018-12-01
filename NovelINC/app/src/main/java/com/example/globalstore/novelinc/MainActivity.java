@@ -11,6 +11,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.globalstore.novelinc.Adapter.MyAdapter;
+import com.example.globalstore.novelinc.Model.Review;
+
 public class MainActivity extends AppCompatActivity {
     private CheckBox chkRemember;
     private Button btnLogin;
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void openHome(String username) {
         if (username.equals("admin")){
-            Intent i = new Intent(this.getApplicationContext(), listbuku.class);
+            Intent i = new Intent(this.getApplicationContext(), list_review.class);
             i.putExtra("username", username);
             this.startActivity(i);
         }

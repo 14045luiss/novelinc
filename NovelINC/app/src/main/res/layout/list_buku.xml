@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/tvJudul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:hint="Judul"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgBuku"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/tvJudul"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/default_buku" />
+
+        <TextView
+            android:id="@+id/tvIdBuku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imgBuku"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/imgBuku"
+            android:hint="Id Buku"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvPenulis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvIdBuku"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/imgBuku"
+            android:hint="Penulis :"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvPenulisContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPenulis"
+            android:layout_marginLeft="82dp"
+            android:layout_marginTop="-27dp"
+            android:layout_toRightOf="@+id/imgBuku"
+            android:hint="Anjani Dwi K"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvPenerbit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPenulisContent"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/imgBuku"
+            android:hint="Penerbit :"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvPenerbitContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPenerbit"
+            android:layout_marginLeft="95dp"
+            android:layout_marginTop="-29dp"
+            android:layout_toRightOf="@+id/imgBuku"
+            android:hint="Exc Sinar"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvTahunTerbit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPenulisContent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="38dp"
+            android:layout_toRightOf="@+id/imgBuku"
+            android:hint="Tahun Terbit :"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTahunTerbitContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPenerbit"
+            android:layout_marginLeft="139dp"
+            android:layout_marginTop="11dp"
+            android:layout_toRightOf="@+id/imgBuku"
+            android:hint="2008"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvSinopsis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTahunTerbitContent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/imgBuku"
+            android:hint="Sinopsis :"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSinopsisContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPenerbit"
+            android:layout_marginLeft="94dp"
+            android:layout_marginTop="43dp"
+            android:layout_toRightOf="@+id/imgBuku"
+            android:hint="Buku Ini Lucu"
+            android:textSize="20sp" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"/>
+
+
+
+</LinearLayout>

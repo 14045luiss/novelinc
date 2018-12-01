@@ -3,6 +3,8 @@
     package="com.example.globalstore.novelinc">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +21,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".user" />
-        <activity android:name=".listbuku"></activity>
+        <activity
+            android:name=".LayarDetail"
+            android:label="Detail Novel" />
+        <activity
+            android:name=".LayarEditBuku"
+            android:label="Edit Buku" />
+        <activity android:name=".list_review" />
+        <activity android:name=".LayarListBuku"></activity>
     </application>
 
 </manifest>
