@@ -54,7 +54,7 @@ public class list_review extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<GetReview> call, Response<GetReview> response) {
                         List<Review> reviewList = response.body().getListDataReview();
-                        Log.d("Retrofit Get", "Jumlah data pembelian: " + String.valueOf(reviewList.size()));
+                        Log.d("Retrofit Get", "Jumlah Data Review: " + String.valueOf(reviewList.size()));
 
                         mAdapter = new MyAdapter(reviewList);
                         mRecyclerView.setAdapter(mAdapter);
@@ -134,7 +134,7 @@ public class list_review extends AppCompatActivity {
             Intent mIntent;
             switch (item.getItemId()) {
                 case R.id.menuTambahNovel:
-                    mIntent = new Intent(this, LayarDetail.class);
+                    mIntent = new Intent(this, LayarInsertBuku.class);
                     startActivity(mIntent);
                     return true;
                 case R.id.menuListBuku:
@@ -143,10 +143,10 @@ public class list_review extends AppCompatActivity {
                     return true;
                 default:
                  return super.onOptionsItemSelected(item);
-                case R.id.menuInsertDataBuku:
-                    Intent intent = new Intent(this, LayarInsertBuku.class);
-                    startActivity(intent);
-                    return true;
+//                case R.id.menuInsertDataBuku:
+//                    Intent intent = new Intent(this, LayarInsertBuku.class);
+//                    startActivity(intent);
+//                    return true;
         }
     }
 }

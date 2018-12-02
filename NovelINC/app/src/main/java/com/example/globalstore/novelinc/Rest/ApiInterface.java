@@ -23,7 +23,7 @@ public interface ApiInterface {
 
         @FormUrlEncoded
         @POST("review/user")
-        Call<PostPutDelReview> postReview(
+        Call<PostPutDelReview>postReview(
                  @Field("id_review") String idReview, @Field("id_buku") String idBuku,
                  @Field("isi_review") String isiReview, @Field("tanggal_review") String tanggalReview);
 

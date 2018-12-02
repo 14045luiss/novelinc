@@ -4,8 +4,8 @@
         android:title="Insert Data Novel"/>
     <item android:id="@+id/menuListBuku"
         android:title="Daftar Novel"/>
-    <item android:id="@+id/menuInsertDataBuku"
-        android:title="Insert Data Novel"/>
+    <!--<item android:id="@+id/menuInsertDataBuku"-->
+        <!--android:title="Insert Data Novel"/>-->
 </menu>
 
 

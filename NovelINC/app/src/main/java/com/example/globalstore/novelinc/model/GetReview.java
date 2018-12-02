@@ -2,15 +2,19 @@ package com.example.globalstore.novelinc.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GetReview {
+
+
     @SerializedName("status")
     String status;
     @SerializedName("result")
     List<Review> listDataReview;
     @SerializedName("message")
     String message;
+
 
     public String getStatus() {
         return status;
@@ -35,6 +39,5 @@ public class GetReview {
     public void setMessage(String message) {
         this.message = message;
     }
-
 
 }

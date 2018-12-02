@@ -1,5 +1,6 @@
 package com.example.globalstore.novelinc;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -14,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.globalstore.novelinc.Model.GetBuku;
+import com.example.globalstore.novelinc.Rest.ApiClient;
+import com.example.globalstore.novelinc.Rest.ApiInterface;
 
 import java.io.File;
 
@@ -26,27 +30,40 @@ import retrofit2.Response;
 
 public class LayarEditBuku extends AppCompatActivity {
 
+
+    ImageView mPhotoUrl;
+    EditText edtIdBuku, edtJudul, edtPenulis, edtPenerbit, edtTahunTerbit, edtSinopsis ;
+    TextView tvMessage;
+    Context mContext;
+    ImageView btUpdate, btDelete, btBack;
+    Button btPhotoUrl;
+    String pathImage = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layar_edit_buku);
+
         mContext = getApplicationContext();
         mPhotoUrl = (ImageView) findViewById(R.id.imgPhotoId);
-        edtIdPembeli = (EditText) findViewById(R.id.edtIdPembeli);
-        edtNama = (EditText) findViewById(R.id.edtNamaPembeli);
-        edtAlamat = (EditText) findViewById(R.id.edtAlamatPembeli);
-        edtTelp = (EditText) findViewById(R.id.edtTelpnPembeli);
+        edtIdBuku = (EditText) findViewById(R.id.edtIdBuku);
+        edtJudul = (EditText) findViewById(R.id.edtJudulBuku);
+        edtPenulis = (EditText) findViewById(R.id.edtPenulisBuku);
+        edtPenerbit = (EditText) findViewById(R.id.edtPenerbitBuku);
+        edtTahunTerbit = (EditText) findViewById(R.id.edtTahunTerbitBuku);
+        edtSinopsis = (EditText) findViewById(R.id.edtSinopsisBuku);
         tvMessage = (TextView) findViewById(R.id.tvMessage);
         btUpdate = (ImageView) findViewById(R.id.btUpdate);
         btDelete = (ImageView) findViewById(R.id.btDelete);
         btBack = (ImageView) findViewById(R.id.btBack);
         btPhotoUrl = (Button) findViewById(R.id.btPhotoUrl);
         Intent mIntent = getIntent();
-        edtIdPembeli.setText(mIntent.getStringExtra("id_pembeli"));
-        edtNama.setText(mIntent.getStringExtra("nama"));
-        edtAlamat.setText(mIntent.getStringExtra("alamat"));
-        edtTelp.setText(mIntent.getStringExtra("telp"));
-
+        edtIdBuku.setText(mIntent.getStringExtra("id_buku"));
+        edtJudul.setText(mIntent.getStringExtra("judul"));
+        edtPenulis.setText(mIntent.getStringExtra("penulis"));
+        edtPenerbit.setText(mIntent.getStringExtra("penerbit"));
+        edtTahunTerbit.setText(mIntent.getStringExtra("tahun_terbit"));
+        edtSinopsis.setText(mIntent.getStringExtra("sinopsis"));
 
         // if (mIntent.getStringExtra("photo_url").length()>0) Picasso.with(mContext).load
 // (ApiClient.BASE_URL + mIntent.getStringExtra("photo_url")).into(mPhotoUrl);
@@ -69,7 +86,7 @@ public class LayarEditBuku extends AppCompatActivity {
                 MultipartBody.Part body = null;
 //dicek apakah image sama dengan yang ada di server atau berubah
 //jika sama dikirim lagi jika berbeda akan dikirim ke server
-                if ((!pathImage.contains("upload/" + edtIdPembeli.getText().toString()))
+                if ((!pathImage.contains("upload/" + edtIdBuku.getText().toString()))
                         &&
                         (pathImage.length() > 0)) {
 //File creating from selected URL
@@ -81,41 +98,50 @@ public class LayarEditBuku extends AppCompatActivity {
                     body = MultipartBody.Part.createFormData("photo_url", file.getName(),
                             requestFile);
                 }
-                RequestBody reqIdPembeli =
+                RequestBody reqIdBuku =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
-                                (edtIdPembeli.getText().toString().isEmpty()) ?
-                                        "" : edtIdPembeli.getText().toString());
-                RequestBody reqNama =
+                                (edtIdBuku.getText().toString().isEmpty()) ?
+                                        "" : edtIdBuku.getText().toString());
+                RequestBody reqJudul =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
-                                (edtNama.getText().toString().isEmpty()) ?
-                                        "" : edtNama.getText().toString());
-                RequestBody reqAlamat =
+                                (edtJudul.getText().toString().isEmpty()) ?
+                                        "" : edtJudul.getText().toString());
+                RequestBody reqPenulis =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
-                                (edtAlamat.getText().toString().isEmpty()) ?
-                                        "" : edtAlamat.getText().toString());
-                RequestBody reqTelp =
+                                (edtPenulis.getText().toString().isEmpty()) ?
+                                        "" : edtPenulis.getText().toString());
+                RequestBody reqPenerbit =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
-                                (edtTelp.getText().toString().isEmpty()) ?
-                                        "" : edtTelp.getText().toString());
+                                (edtPenerbit.getText().toString().isEmpty()) ?
+                                        "" : edtPenerbit.getText().toString());
+                RequestBody reqTahunTerbit =
+                        MultipartBody.create(MediaType.parse("multipart/form-data"),
+                                (edtPenerbit.getText().toString().isEmpty()) ?
+                                        "" : edtTahunTerbit.getText().toString());
+                RequestBody reqSinopsis =
+                        MultipartBody.create(MediaType.parse("multipart/form-data"),
+                                (edtSinopsis.getText().toString().isEmpty()) ?
+                                        "" : edtSinopsis.getText().toString());
                 RequestBody reqAction =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
                                 "update");
-                Call<GetPembeli> callUpdate = mApiInterface.putPembeli(body,
-                        reqIdPembeli, reqNama,
-                        reqAlamat, reqTelp, reqAction);
-                callUpdate.enqueue(new Callback<GetPembeli>() {
+                Call<GetBuku> callUpdate = mApiInterface.putBuku(body,
+                        reqIdBuku, reqJudul,reqPenulis, reqPenerbit,reqTahunTerbit, reqSinopsis, reqAction);
+                callUpdate.enqueue(new Callback<GetBuku>() {
                     @Override
-                    public void onResponse(Call<GetPembeli> call, Response<GetPembeli>
+                    public void onResponse(Call<GetBuku> call, Response<GetBuku>
                             response) {
                         //Log.d("Update Retrofit ", response.body().getStatus());
                         if (response.body().getStatus().equals("failed")) {
                             tvMessage.setText("Retrofit Update \n Status = " + response.body().getStatus() + "\n" + "Message = " + response.body().getMessage() + "\n");
                         } else {
                             String detail = "\n" +
-                                    "id_pembeli = "+response.body().getResult().get(0).getIdPembeli()+"\n "+
-                                    "nama = "+response.body().getResult().get(0).getNama()+"\n "+
-                                    "alamat = "+response.body().getResult().get(0).getAlamat()+"\n "+
-                                    "telp = "+response.body().getResult().get(0).getTelp()+"\n "+
+                                    "id_buku= "+response.body().getResult().get(0).getIdBuku()+"\n "+
+                                    "judul = "+response.body().getResult().get(0).getJudul()+"\n "+
+                                    "penulis = "+response.body().getResult().get(0).getPenulis()+"\n "+
+                                    "penerbit = "+response.body().getResult().get(0).getPenerbit()+"\n "+
+                                    "tahun_terbit = "+response.body().getResult().get(0).getTahun_terbit()+"\n "+
+                                    "sinopsis = "+response.body().getResult().get(0).getSinopsis()+"\n "+
                                     "photo_url = "+response.body().getResult().get(0).getPhotoUrl() + "\n";
                             tvMessage.setText("Retrofit Update \n Status = "+response.body().getStatus()+"\n"+
                                     "Message = " + response.body().getMessage() + detail);
@@ -123,7 +149,7 @@ public class LayarEditBuku extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<GetPembeli> call, Throwable t) {
+                    public void onFailure(Call<GetBuku> call, Throwable t) {
 //Log.d("Update Retrofit ", t.getMessage());
                         tvMessage.setText("Retrofit Update \n Status = " +
                                 t.getMessage());
@@ -134,18 +160,18 @@ public class LayarEditBuku extends AppCompatActivity {
         btDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RequestBody reqIdPembeli =
+                RequestBody reqIdBuku =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
-                                (edtIdPembeli.getText().toString().isEmpty()) ?
-                                        "" : edtIdPembeli.getText().toString());
+                                (edtIdBuku.getText().toString().isEmpty()) ?
+                                        "" : edtIdBuku.getText().toString());
                 RequestBody reqAction =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
                                 "delete");
-                Call<GetPembeli> callDelete =
-                        mApiInterface.deletePembeli(reqIdPembeli, reqAction);
-                callDelete.enqueue(new Callback<GetPembeli>() {
+                Call<GetBuku> callDelete =
+                        mApiInterface.deleteBuku(reqIdBuku, reqAction);
+                callDelete.enqueue(new Callback<GetBuku>() {
                     @Override
-                    public void onResponse(Call<GetPembeli> call, Response<GetPembeli>
+                    public void onResponse(Call<GetBuku> call, Response<GetBuku>
                             response) {
                         tvMessage.setText("Retrofit Delete \n Status = " +
                                 response.body().getStatus() + "\n" +
@@ -153,7 +179,7 @@ public class LayarEditBuku extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<GetPembeli> call, Throwable t) {
+                    public void onFailure(Call<GetBuku> call, Throwable t) {
                         tvMessage.setText("Retrofit Delete \n Status = " +
                                 t.getMessage());
                     }
@@ -163,7 +189,7 @@ public class LayarEditBuku extends AppCompatActivity {
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent tempIntent = new Intent(mContext, LayarListPembeli.class);
+                Intent tempIntent = new Intent(mContext, LayarListBuku.class);
                 startActivity(tempIntent);
             }
         });
@@ -203,8 +229,5 @@ public class LayarEditBuku extends AppCompatActivity {
                 Toast.makeText(mContext, "Foto gagal di-load", Toast.LENGTH_LONG).show();
             }
         }
-    }
-}
-
     }
 }

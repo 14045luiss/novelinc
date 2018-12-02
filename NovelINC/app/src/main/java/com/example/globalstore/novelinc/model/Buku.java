@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Buku {
 
+
     @SerializedName("id_buku")
     private String idBuku;
     @SerializedName("judul")
@@ -18,18 +19,19 @@ public class Buku {
     private String sinopsis;
     @SerializedName("photo_url")
     private String photoUrl;
+    private String photoId;
     private String action;
 
-    public Buku(String idBuku, String judul, String penulis, String penerbit, int tahun_terbit, String sinopsis, String photoUrl, String action) {
+    public Buku(String idBuku, String judul, String penulis, String penerbit, int tahun_terbit, String sinopsis, String photoUrl, String action, String photoId) {
         this.idBuku = idBuku;
         this.judul = judul;
         this.penulis = penulis;
+        this.penerbit = penerbit;
         this.tahun_terbit = tahun_terbit;
         this.sinopsis = sinopsis;
         this.photoUrl = photoUrl;
         this.action = action;
     }
-
     public String getIdBuku() {
         return idBuku;
     }
@@ -86,6 +88,14 @@ public class Buku {
         this.photoUrl = photoUrl;
     }
 
+    public String getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(String photoId) {
+        this.photoId = photoId;
+    }
+
     public String getAction() {
         return action;
     }
@@ -94,7 +104,7 @@ public class Buku {
         this.action = action;
     }
 
+    }
 
 
 
-}

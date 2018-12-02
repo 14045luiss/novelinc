@@ -21,14 +21,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".user" />
+        <activity android:name=".list_review" />
+
         <activity
             android:name=".LayarDetail"
-            android:label="Detail Novel" />
+            android:label="Detail Trans Pembelian" />
+        <activity
+            android:name=".LayarListBuku"
+            android:label="Daftar Novel" />
+        <activity
+            android:name=".LayarInsertBuku"
+            android:label="Daftar Novel"/>
+
         <activity
             android:name=".LayarEditBuku"
-            android:label="Edit Buku" />
-        <activity android:name=".list_review" />
-        <activity android:name=".LayarListBuku"></activity>
+            android:label="Edit Novel" />
     </application>
 
 </manifest>

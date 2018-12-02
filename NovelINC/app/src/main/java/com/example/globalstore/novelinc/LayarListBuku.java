@@ -48,14 +48,14 @@ public class LayarListBuku extends AppCompatActivity {
                 mBukuCall.enqueue(new Callback<GetBuku>() {
                     @Override
                     public void onResponse(Call<GetBuku> call,Response<GetBuku> response) {
-                        Log.d("Get Pembeli",response.body().getStatus());
+                        Log.d("Get Buku",response.body().getStatus());
                         List<Buku> listBuku = response.body().getResult();
                         mAdapter = new BukuAdapter(listBuku);
                         mRecyclerView.setAdapter(mAdapter);
                     }
                     @Override
                     public void onFailure(Call<GetBuku> call, Throwable t) {
-                        Log.d("Get Pembeli",t.getMessage());
+                        Log.d("Get Buku",t.getMessage());
                     }
                 });
             }
