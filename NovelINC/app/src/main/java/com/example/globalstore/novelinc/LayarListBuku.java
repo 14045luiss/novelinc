@@ -47,7 +47,8 @@ public class LayarListBuku extends AppCompatActivity {
                 Call<GetBuku> mBukuCall = mApiInterface.getBuku();
                 mBukuCall.enqueue(new Callback<GetBuku>() {
                     @Override
-                    public void onResponse(Call<GetBuku> call,Response<GetBuku> response) {
+                    public void onResponse(Call<GetBuku> call,
+                                           Response<GetBuku> response) {
                         Log.d("Get Buku",response.body().getStatus());
                         List<Buku> listBuku = response.body().getResult();
                         mAdapter = new BukuAdapter(listBuku);
