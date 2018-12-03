@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/tvIdBuku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentEnd="true"
+            android:hint="Id buku"
+            android:textSize="5sp"/>
+
+        <ImageView
+            android:id="@+id/imgPembeli"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="38dp"
+            android:src="@drawable/default_user" />
+
+        <TextView
+            android:id="@+id/tvJudul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="judul"
+            android:layout_alignTop="@id/imgPembeli"
+            android:layout_toRightOf="@id/imgPembeli"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:id="@+id/tvpenulis"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_above="@+id/tvtahunterbit"
+            android:layout_alignStart="@+id/tvJudul"
+            android:hint="Contoh "
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tvpenerbit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="109dp"
+            android:hint="penerbit" />
+
+        <TextView
+            android:id="@+id/tvtahunterbit"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_above="@+id/tvsinopsis"
+            android:layout_alignStart="@+id/tvJudul"
+            android:hint="2017"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tvsinopsis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imgPembeli"
+            android:layout_alignStart="@+id/tvJudul"
+            android:hint="mamllahsdkabd albdlbalsd" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"/>
+</LinearLayout>
