@@ -30,8 +30,8 @@ public class LayarDetail extends AppCompatActivity {
         edtIdReview = (EditText) findViewById(R.id.edtIdReview);
         edtIdUser = (EditText) findViewById(R.id.edtIdUser);
         edtidbuku = (EditText) findViewById(R.id.edtIdbuku);
-        edtTanggalreview = (EditText) findViewById(R.id.edtTanggalreview);
-        edtIsireview = (EditText) findViewById(R.id.edtIsireview);
+        edtTanggalreview = (EditText) findViewById(R.id.edtIsireview);
+        edtIsireview = (EditText) findViewById(R.id.edtTanggalreview);
 
         tvMessage = (TextView) findViewById(R.id.tvMessage2);
 

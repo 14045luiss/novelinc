@@ -34,8 +34,8 @@ public interface ApiInterface {
 
 
     @FormUrlEncoded
-    @HTTP(method = "DELETE", path = "review/user", hasBody = true)
-    Call<PostPutDelReview> deleteReview(@Field("id_Review") String idReview);
+    @HTTP(method = "DELETE", path = "review/all", hasBody = true)
+    Call<PostPutDelReview> deleteReview(@Field("id_review") String idReview);
 
 
 

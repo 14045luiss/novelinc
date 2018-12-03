@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="439dp"
+        android:layout_height="451dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
 
@@ -45,8 +45,8 @@
             android:id="@+id/edtAddJudul"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/edtAddpenerbit"
             android:layout_below="@+id/imgAddPhotoId"
-            android:layout_centerHorizontal="true"
             android:hint="judul" />
 
         <TextView
@@ -78,9 +78,9 @@
 
         <EditText
             android:id="@+id/edtAddpenulis"
-            android:layout_width="wrap_content"
+            android:layout_width="76dp"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/edtAddtahunterbit"
+            android:layout_below="@+id/tvAddpenerbit"
             android:layout_centerHorizontal="true"
             android:hint="Penulis" />
 
@@ -97,8 +97,8 @@
             android:id="@+id/edtAddtahunterbit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/edtAddsinopsis"
-            android:layout_centerHorizontal="true"
+            android:layout_alignStart="@+id/edtAddJudul"
+            android:layout_below="@+id/edtAddpenulis"
             android:hint="tahun terbit" />
 
         <TextView
@@ -112,11 +112,10 @@
 
         <EditText
             android:id="@+id/edtAddsinopsis"
-            android:layout_width="241dp"
+            android:layout_width="230dp"
             android:layout_height="87dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="34dp"
-            android:layout_toEndOf="@+id/tvAddtahunterbit"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/edtAddtahunterbit"
             android:hint="sinopsis" />
 
         <LinearLayout
@@ -147,6 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:layout_marginBottom="0dp"
             android:hint="Pesan"
             android:inputType="textMultiLine"
             android:textSize="20dp" />

@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class Review {
     @SerializedName("id_review")
-    private int id_review;
+    private String id_review;
     @SerializedName("id_user")
-    private int id_user;
+    private String id_user;
     @SerializedName("id_buku")
-    private int id_buku;
+    private String id_buku;
     @SerializedName("isi_review")
     private String isi_review;
     @SerializedName("tanggal_review")
-    private int tanggal_review;
+    private String tanggal_review;
 
-    public Review(int id_review,int id_user, int id_buku, String isi_review, int tanggal_review) {
+    public Review(String id_review,String id_user, String id_buku, String isi_review, String tanggal_review) {
         this.id_review = id_review;
         this.id_user = id_user;
         this.id_buku = id_buku;
@@ -23,23 +23,23 @@ public class Review {
     }
 
 
-    public int getId_review() {
+    public String getId_review() {
         return id_review;
     }
 
-    public void setId_review(int id_review) {
+    public void setId_review(String id_review) {
         this.id_review = id_review;
     }
 
-    public int getId_user() { return id_user; }
+    public String getId_user() { return id_user; }
 
-    public void setId_user(int id_user) { this.id_user = id_user; }
+    public void setId_user(String id_user) { this.id_user = id_user; }
 
-    public int getId_buku() {
+    public String getId_buku() {
         return id_buku;
     }
 
-    public void setId_buku(int id_buku) {
+    public void setId_buku(String id_buku) {
         this.id_buku = id_buku;
     }
 
@@ -51,11 +51,11 @@ public class Review {
         this.isi_review = isi_review;
     }
 
-    public int getTanggal_review() {
+    public String getTanggal_review() {
         return tanggal_review;
     }
 
-    public void setTanggal_review(int tanggal_review) {
+    public void setTanggal_review(String tanggal_review) {
         this.tanggal_review = tanggal_review;
     }
 
