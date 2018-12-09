@@ -23,7 +23,7 @@ Novel inc adalah aplikasi berbasis android yang terdiri dari 2
 min Android 4.0.3 (IceCreamSandwich)
 
 ## List class
-# ADMIN
+### ADMIN
 
 + -BukuAdapter.java
 + adalah class Adapter dari Buku
@@ -62,7 +62,7 @@ min Android 4.0.3 (IceCreamSandwich)
 + - ApiInterface.java
 + digunakan untuk mengirim fungsi dan paramater ke server ketika melakukan komunikasi
 
-# USER
+### USER
 
 + -BukuAdapter.java
 + adalah class Adapter dari Buku
