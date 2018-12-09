@@ -23,10 +23,81 @@ Novel inc adalah aplikasi berbasis android yang terdiri dari 2
 min Android 4.0.3 (IceCreamSandwich)
 
 ## List class
-+ Satu.java
-+ Kelas ini berfungsi menghandle Pemerintah Negara Indonesia yang melindungi segenap bangsa Indonesia dan seluruh tumpah darah Indonesia.
-+ Dua.java
-+ Kelas yang berfungsi untuk memajukan kesejahteraan umum, mencerdaskan kehidupan bangsa, dan ikut melaksanakan ketertiban dunia yang berdasarkan kemerdekaan, perdamaian abadi dan keadilan sosial.
+#ADMIN
+
++-BukuAdapter.java
++adalah class Adapter dari Buku
++-LayarDetail.java
++digunakan untuk memanggil/ menggunakan fungsi pada ApiInterface.java review
++-LayarEditBuku.java
++digunakan untuk memanggil/ menggunakan fungsi pada ApiInterface.java untuk edit buku
++-LayarInsertBuku.java
++digunakan untuk memanggil/ menggunakan fungsi pada ApiInterface.java untuk insert buku
++-LayarListBuku.java
++untuk layoutmanager recycleview dari tabel Review 
++-layarlogin.java
++digunakan untuk mengeset login admin(validasi dll)
++-MainActivity.java
++untuk layoutmanager recycleview dari tabel Review 
++-MyAdapter
++adalah class adapater dari Review
+
++MODEL :
+
++- Buku.java
++digunakan untuk maping data pada tabel buku ke class Buku menggunakan Gson dan pembuatan Constructor set get method 
++- GetBuku.java
++digunakan ketika get data buku
++- GetReview.java
++digunakan ketika get data review
++- PostPutDelReview.java
++digunakan ketika post,put,del data review
++-Review
++digunakan untuk maping data pada tabel review ke class Review menggunakan Gson dan pembuatan Constructor set get method 
+
++REST :
+
++- ApiClient.java 
++digunakan untuk membuat Builder.Api yang berisi URL dari Rest Server
++- ApiInterface.java
++digunakan untuk mengirim fungsi dan paramater ke server ketika melakukan komunikasi
+
+#USER
+
++-BukuAdapter.java
++adalah class Adapter dari Buku
++-LayarDetail.java
++digunakan untuk memanggil/ menggunakan fungsi pada ApiInterface.java review
++-LayarListBuku.java
++untuk layoutmanager recycleview dari tabel Review 
++-layarlogin.java
++digunakan untuk mengeset login admin(validasi dll)
++-MainActivity.java
++untuk layoutmanager recycleview dari tabel Review 
++-MyAdapter
++adalah class adapater dari Review
+
++MODEL :
+
++- Buku.java
++digunakan untuk maping data pada tabel buku ke class Buku menggunakan Gson dan Pembuatan Constructor set get method 
++- GetBuku.java
++digunakan ketika get data buku
++- GetReview.java
++digunakan ketika get data review
++- PostPutDelReview.java
++digunakan ketika post,put,del data review
++-Review
++digunakan untuk maping data pada tabel review ke class Review menggunakan Gson dan Pembuatan Constructor set get method 
+
++REST :
+
++- ApiClient.java 
++digunakan untuk membuat Builder.Api yang berisi URL dari Rest Server
++- ApiInterface.java
++digunakan untuk mengirim fungsi dan paramater ke server ketika melakukan komunikasi
+
+
 
 ## Referensi
 + Android developer fundamentals course concepths idn (Dikembangkan oleh Tim Pelatihan Developer Google
