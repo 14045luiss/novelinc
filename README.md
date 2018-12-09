@@ -25,76 +25,76 @@ min Android 4.0.3 (IceCreamSandwich)
 ## List class
 ### ADMIN
 
-+ -BukuAdapter.java
+ - BukuAdapter.java
 + adalah class Adapter dari Buku
-+ -LayarDetail.java
+ - LayarDetail.java
 + digunakan untuk memanggil/ menggunakan fungsi pada ApiInterface.java review
-+ -LayarEditBuku.java
+ - LayarEditBuku.java
 + digunakan untuk memanggil/ menggunakan fungsi pada ApiInterface.java untuk edit buku
-+ -LayarInsertBuku.java
+ - LayarInsertBuku.java
 + digunakan untuk memanggil/ menggunakan fungsi pada ApiInterface.java untuk insert buku
-+ -LayarListBuku.java
+ - LayarListBuku.java
 + untuk layoutmanager recycleview dari tabel Review 
-+ -layarlogin.java
+ - layarlogin.java
 + digunakan untuk mengeset login admin(validasi dll)
-+ -MainActivity.java
+ - MainActivity.java
 + untuk layoutmanager recycleview dari tabel Review 
-+ -MyAdapter
+ - MyAdapter
 + adalah class adapater dari Review
 
 + MODEL :
 
-+ - Buku.java
+ - Buku.java
 + digunakan untuk maping data pada tabel buku ke class Buku menggunakan Gson dan pembuatan Constructor set get method 
-+ - GetBuku.java
+ - GetBuku.java
 + digunakan ketika get data buku
-+ - GetReview.java
+ - GetReview.java
 + digunakan ketika get data review
-+ - PostPutDelReview.java
+ - PostPutDelReview.java
 + digunakan ketika post,put,del data review
-+ -Review
+ - Review
 + digunakan untuk maping data pada tabel review ke class Review menggunakan Gson dan pembuatan Constructor set get method 
 
 + REST :
 
-+ - ApiClient.java 
+ - ApiClient.java 
 + digunakan untuk membuat Builder.Api yang berisi URL dari Rest Server
-+ - ApiInterface.java
+ - ApiInterface.java
 + digunakan untuk mengirim fungsi dan paramater ke server ketika melakukan komunikasi
 
 ### USER
 
-+ -BukuAdapter.java
+ - BukuAdapter.java
 + adalah class Adapter dari Buku
-+ -LayarDetail.java
+ - LayarDetail.java
 + digunakan untuk memanggil/ menggunakan fungsi pada ApiInterface.java review
-+ -LayarListBuku.java
+ - LayarListBuku.java
 + untuk layoutmanager recycleview dari tabel Review 
-+ -layarlogin.java
+ - layarlogin.java
 + digunakan untuk mengeset login admin(validasi dll)
-+ -MainActivity.java
+ - MainActivity.java
 + untuk layoutmanager recycleview dari tabel Review 
-+ -MyAdapter
+ - MyAdapter
 + adalah class adapater dari Review
 
 + MODEL :
 
-+ - Buku.java
+ - Buku.java
 + digunakan untuk maping data pada tabel buku ke class Buku menggunakan Gson dan Pembuatan Constructor set get method 
-+ - GetBuku.java
+ - GetBuku.java
 + digunakan ketika get data buku
-+ - GetReview.java
+ - GetReview.java
 + digunakan ketika get data review
-+ - PostPutDelReview.java
+ - PostPutDelReview.java
 + digunakan ketika post,put,del data review
-+ -Review
+ - Review
 + digunakan untuk maping data pada tabel review ke class Review menggunakan Gson dan Pembuatan Constructor set get method 
 
 + REST :
 
-+ - ApiClient.java 
+ - ApiClient.java 
 + digunakan untuk membuat Builder.Api yang berisi URL dari Rest Server
-+ - ApiInterface.java
+ - ApiInterface.java
 + digunakan untuk mengirim fungsi dan paramater ke server ketika melakukan komunikasi
 
 
