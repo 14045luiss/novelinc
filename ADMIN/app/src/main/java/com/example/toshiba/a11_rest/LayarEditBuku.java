@@ -3,7 +3,9 @@ package com.example.toshiba.a11_rest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +39,7 @@ public class LayarEditBuku extends AppCompatActivity {
     ImageView btUpdate, btDelete, btBack;
     Button btPhotoUrl;
     String pathImage = "";
+    Button mButtonPicture;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -57,6 +60,7 @@ public class LayarEditBuku extends AppCompatActivity {
         btDelete = (ImageView) findViewById(R.id.btDelete);
         btBack = (ImageView) findViewById(R.id.btBack);
         btPhotoUrl = (Button) findViewById(R.id.btPhotoId);
+        mButtonPicture = (Button) findViewById(R.id.btPhotoId);
 
         Intent mIntent = getIntent();
         edtIdBuku.setText(mIntent.getStringExtra("id_buku"));
@@ -76,6 +80,43 @@ public class LayarEditBuku extends AppCompatActivity {
 
         pathImage = mIntent.getStringExtra("photo_url");
         setListener();
+
+        mButtonPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                captureImage();
+            }
+        });
+
+        // Checking camera availability
+        if (!isDeviceSupportCamera()) {
+            Toast.makeText(getApplicationContext(), "Camera di device anda tidak tersedia", Toast.LENGTH_LONG).show();
+            finish();
+        }
+    }
+
+    private boolean isDeviceSupportCamera() {
+        if (getApplicationContext().getPackageManager().hasSystemFeature(
+                PackageManager.FEATURE_CAMERA)) {
+            // this device has a camera
+            return true;
+        } else {
+            // no camera on this device
+            return false;
+        }
+    }
+
+
+    /*
+     * Capturing Camera Image will lauch camera app requrest image capture
+     */
+    private void captureImage(){
+        Intent takePictureIntent = new
+                Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null)
+        {
+            startActivityForResult(takePictureIntent, 100);
+        }
     }
 
     private void setListener() {
@@ -229,6 +270,11 @@ public class LayarEditBuku extends AppCompatActivity {
             } else {
                 Toast.makeText(mContext, "Foto gagal di-load", Toast.LENGTH_LONG).show();
             }
+        }
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            mPhotoUrl.setImageBitmap(imageBitmap);
         }
     }
 

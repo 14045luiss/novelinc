@@ -3,7 +3,9 @@ package com.example.toshiba.a11_rest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -33,10 +35,11 @@ public class LayarInsertBuku extends AppCompatActivity {
     Context mContext;
     ImageView mImageView;
     ImageView btAddPhotoId;
-    ImageView btAddBack,btAddData;
-    EditText edtAddJudulBuku, edtAddPenulisBuku, edtAddPenerbitBuku, edtAddTahunTerbitBuku, edtAddSinopsisBuku ;
+    ImageView btAddBack, btAddData;
+    EditText edtAddJudulBuku, edtAddPenulisBuku, edtAddPenerbitBuku, edtAddTahunTerbitBuku, edtAddSinopsisBuku;
     TextView tvAddMessage;
     String imagePath = "";
+    Button btnCaptures;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -49,6 +52,7 @@ public class LayarInsertBuku extends AppCompatActivity {
         mImageView = (ImageView) findViewById(R.id.imgAddPhotoId);
         btAddPhotoId = (ImageView) findViewById(R.id.btAddPhotoId);
         edtAddJudulBuku = (EditText) findViewById(R.id.edtAddJudul);
+        btnCaptures = (Button) findViewById(R.id.btnCapture);
         edtAddPenulisBuku = (EditText) findViewById(R.id.edtAddpenulis);
         edtAddPenerbitBuku = (EditText) findViewById(R.id.edtAddpenerbit);
         edtAddTahunTerbitBuku = (EditText) findViewById(R.id.edtAddtahunterbit);
@@ -62,7 +66,7 @@ public class LayarInsertBuku extends AppCompatActivity {
                 ApiInterface mApiInterface =
                         ApiClient.getClient().create(ApiInterface.class);
                 MultipartBody.Part body = null;
-                if (!imagePath.isEmpty()){
+                if (!imagePath.isEmpty()) {
 // Buat file dari image yang dipilih
                     File file = new File(imagePath);
                     // Buat RequestBody instance dari file
@@ -74,52 +78,52 @@ public class LayarInsertBuku extends AppCompatActivity {
                 }
                 RequestBody reqJudul =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
-                                (edtAddJudulBuku.getText().toString().isEmpty())?"":edtAddJudulBuku.getText().toString());
+                                (edtAddJudulBuku.getText().toString().isEmpty()) ? "" : edtAddJudulBuku.getText().toString());
                 RequestBody reqPenulis =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
-                                (edtAddPenulisBuku.getText().toString().isEmpty())?"":edtAddPenulisBuku.getText().toString());
+                                (edtAddPenulisBuku.getText().toString().isEmpty()) ? "" : edtAddPenulisBuku.getText().toString());
                 RequestBody reqPenerbit =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
-                                (edtAddPenerbitBuku.getText().toString().isEmpty())?"":edtAddPenerbitBuku.getText().toString());
+                                (edtAddPenerbitBuku.getText().toString().isEmpty()) ? "" : edtAddPenerbitBuku.getText().toString());
                 RequestBody reqTahunTerbit =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
-                                (edtAddTahunTerbitBuku.getText().toString().isEmpty())?"":edtAddTahunTerbitBuku.getText().toString());
+                                (edtAddTahunTerbitBuku.getText().toString().isEmpty()) ? "" : edtAddTahunTerbitBuku.getText().toString());
                 RequestBody reqSinopsis =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
-                                (edtAddSinopsisBuku.getText().toString().isEmpty())?"":edtAddSinopsisBuku.getText().toString());
+                                (edtAddSinopsisBuku.getText().toString().isEmpty()) ? "" : edtAddSinopsisBuku.getText().toString());
                 RequestBody reqAction =
                         MultipartBody.create(MediaType.parse("multipart/form-data"),
                                 "insert");
-                Call<GetBuku> mBukuCall = mApiInterface.postBuku(body, reqJudul,reqPenulis, reqPenerbit,reqTahunTerbit, reqSinopsis, reqAction );
+                Call<GetBuku> mBukuCall = mApiInterface.postBuku(body, reqJudul, reqPenulis, reqPenerbit, reqTahunTerbit, reqSinopsis, reqAction);
                 mBukuCall.enqueue(new Callback<GetBuku>() {
                     @Override
                     public void onResponse(Call<GetBuku> call, Response<GetBuku>
                             response) {
                         //Log.d("Insert Retrofit",response.body().getMessage());
-                        if (response.body().getStatus().equals("failed")){
-                            tvAddMessage.setText("Retrofit Insert \n Status = "+response.body()
-                                    .getStatus()+"\n"+ "Message = "+response.body().getMessage()+"\n");
-                        }else{
-                            String detail = "\n"+
+                        if (response.body().getStatus().equals("failed")) {
+                            tvAddMessage.setText("Retrofit Insert \n Status = " + response.body()
+                                    .getStatus() + "\n" + "Message = " + response.body().getMessage() + "\n");
+                        } else {
+                            String detail = "\n" +
 
-                                    "id_buku = "+response.body().getResult().get(0).getIdBuku()+"\n "+
-                                    "judul = "+response.body().getResult().get(0).getJudul()+"\n "+
-                                    "penulis = "+response.body().getResult().get(0).getPenulis()+"\n "+
-                                    "penerbit = "+response.body().getResult().get(0).getPenerbit()+"\n "+
-                                    "tahun_terbit = "+response.body().getResult().get(0).getTahun_terbit()+"\n "+
-                                    "sinopsis = "+response.body().getResult().get(0).getSinopsis()+"\n "+
-                                    "photo_url = "+response.body().getResult().get(0).getPhotoUrl() +"\n";
+                                    "id_buku = " + response.body().getResult().get(0).getIdBuku() + "\n " +
+                                    "judul = " + response.body().getResult().get(0).getJudul() + "\n " +
+                                    "penulis = " + response.body().getResult().get(0).getPenulis() + "\n " +
+                                    "penerbit = " + response.body().getResult().get(0).getPenerbit() + "\n " +
+                                    "tahun_terbit = " + response.body().getResult().get(0).getTahun_terbit() + "\n " +
+                                    "sinopsis = " + response.body().getResult().get(0).getSinopsis() + "\n " +
+                                    "photo_url = " + response.body().getResult().get(0).getPhotoUrl() + "\n";
 
 
-
-                            tvAddMessage.setText("Retrofit Insert \n Status = "+response.body().getStatus()+"\n"+
-                                    "Message = "+response.body().getMessage()+detail);
+                            tvAddMessage.setText("Retrofit Insert \n Status = " + response.body().getStatus() + "\n" +
+                                    "Message = " + response.body().getMessage() + detail);
                         }
                     }
+
                     @Override
                     public void onFailure(Call<GetBuku> call, Throwable t) {
                         //Log.d("Insert Retrofit", t.getMessage());
-                        tvAddMessage.setText("Retrofit Insert Failure \n Status = "+ t.getMessage());
+                        tvAddMessage.setText("Retrofit Insert Failure \n Status = " + t.getMessage());
                     }
                 });
             }
@@ -131,6 +135,8 @@ public class LayarInsertBuku extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
         btAddPhotoId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,7 +149,47 @@ public class LayarInsertBuku extends AppCompatActivity {
                 startActivityForResult(intentChoose, 10);
             }
         });
+
+
+        btnCaptures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                captureImage();
+            }
+        });
+
+        // Checking camera availability
+        if (!isDeviceSupportCamera()) {
+            Toast.makeText(getApplicationContext(), "Camera di device anda tidak tersedia", Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
+
+    private boolean isDeviceSupportCamera() {
+        if (getApplicationContext().getPackageManager().hasSystemFeature(
+                PackageManager.FEATURE_CAMERA)) {
+            // this device has a camera
+            return true;
+        } else {
+            // no camera on this device
+            return false;
+        }
+    }
+
+
+    /*
+     * Capturing Camera Image will lauch camera app requrest image capture
+     */
+    private void captureImage(){
+        Intent takePictureIntent = new
+                Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null)
+        {
+            startActivityForResult(takePictureIntent, 100);
+        }
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -168,6 +214,12 @@ public class LayarInsertBuku extends AppCompatActivity {
                 Toast.makeText(mContext, "Foto gagal di-load",
                         Toast.LENGTH_LONG).show();
             }
+        }
+
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            mImageView.setImageBitmap(imageBitmap);
         }
     }
 }
