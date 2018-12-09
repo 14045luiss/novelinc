@@ -52,12 +52,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<GetReview> call, Response<GetReview> response) {
                         List<Review> reviewList = response.body().getListDataReview();
                         Log.d("Retrofit Get", "Jumlah data pembelian: " + String.valueOf(reviewList.size()));
-
                         mAdapter = new MyAdapter(reviewList, getApplicationContext());
                         mRecyclerView.setAdapter(mAdapter);
-
                     }
-
 
                     @Override
                     public void onFailure(retrofit2.Call<GetReview> call, Throwable t) {

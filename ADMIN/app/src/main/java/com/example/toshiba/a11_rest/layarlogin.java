@@ -70,8 +70,6 @@ public class layarlogin extends AppCompatActivity {
     private boolean checkCredentials(String username, String password) {
         if (username.equals("admin") && password.equals("admin"))
             return true;
-        else if (username.equals("user") && password.equals("user"))
-            return true;
         else
             return false;
 
@@ -91,11 +89,6 @@ public class layarlogin extends AppCompatActivity {
 
     private void openHome(String username) {
         if (username.equals("admin")){
-            Intent i = new Intent(this.getApplicationContext(), MainActivity.class);
-            i.putExtra("username", username);
-            this.startActivity(i);
-        }
-        if (username.equals("user")){
             Intent i = new Intent(this.getApplicationContext(), MainActivity.class);
             i.putExtra("username", username);
             this.startActivity(i);
