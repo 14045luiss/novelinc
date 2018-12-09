@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_post_put_del_pembeli"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    tools:context=".LayarEditBuku">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/imgPhotoId"
+            android:layout_width="200dp"
+            android:layout_height="82dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/default_user" />
+
+        <Button
+            android:id="@+id/btPhotoId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgPhotoId"
+            android:layout_centerHorizontal="true"
+            android:text="Select Photo Id" />
+
+        <TextView
+            android:id="@+id/tvJudul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/edtJudul"
+            android:layout_alignParentStart="true"
+            android:text="  Judul :"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/edtJudul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tvpenerbit"
+            android:layout_alignStart="@+id/edtTahunterbit"
+            android:hint="judul" />
+
+        <TextView
+            android:id="@+id/tvPenulis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/edtPenulis"
+            android:layout_alignParentStart="true"
+            android:text="Penulis :"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/edtPenulis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/edtTahunterbit"
+            android:layout_alignEnd="@+id/btPhotoId"
+            android:hint="Penulis" />
+
+        <EditText
+            android:id="@+id/edtPenerbit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/edtJudul"
+            android:layout_centerVertical="true"
+            android:hint="Penerbit" />
+
+        <TextView
+            android:id="@+id/tvPenerbit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="Penerbit :"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvTahunterbit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="136dp"
+            android:text="Tahun terbit :"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/edtTahunterbit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tvtahunterbit"
+            android:layout_alignEnd="@+id/imgPhotoId"
+            android:hint="tahun terbit" />
+
+        <TextView
+            android:id="@+id/tvSinopsis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tvtahunterbit"
+            android:layout_marginTop="-136dp"
+            android:text="sinopsis :"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/edtsinopsis"
+            android:layout_width="241dp"
+            android:layout_height="73dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/tvtahunterbit"
+            android:layout_marginTop="-136dp"
+            android:hint="sinopsis" />
+
+        <LinearLayout
+            android:id="@+id/LinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btPhotoId"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Update" />
+
+            <Button
+                android:id="@+id/btDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Delete" />
+
+            <Button
+                android:id="@+id/btBack"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Back" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/LinearLayout"
+            android:layout_marginTop="258dp"
+            android:hint="Pesan"
+            android:inputType="textMultiLine"
+            android:textSize="20dp" />
+    </RelativeLayout>
+</RelativeLayout>

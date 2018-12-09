@@ -13,23 +13,11 @@ class Buku extends REST_Controller {
     private $folder_upload = 'uploads/';
 
     function all_get(){
-        $get_buku = $this->db->query("
-            SELECT
-                id_buku,
-                judul,
-                penulis,
-                tahun_terbit,
-                penerbit,
-                sinopsis,
-                photo_url
-
-FROM buku")->result();
-       $this->response(
-           array(
-               "status" => "success",
-               "result" => $get_buku
-           )
-       );
+         $get_buku = $this->db->query("SELECT id_buku,judul,penulis,tahun_terbit,penerbit,sinopsis,photo_url FROM buku ")->result();
+        $this->response(array(
+            "status"=>"success",
+            "result"=>$get_buku
+        ));
     }
 
     function all_post() {

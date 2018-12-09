@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:82/android_api_novel/';
+$config['base_url'] = 'http://192.168.1.2:81/android_api_novel/';
 
 /*
 |--------------------------------------------------------------------------
