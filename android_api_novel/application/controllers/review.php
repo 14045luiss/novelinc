@@ -1,246 +1,148 @@
 <?php
-
-// use Restserver\Libraries\REST_Controller;
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-// Jika ada pesan "REST_Controller not found"
-require APPPATH . 'libraries/REST_Controller.php';
+require('application/libraries/REST_Controller.php');
 require APPPATH . 'libraries/Format.php';
 
-class Review extends REST_Controller {
+class review extends REST_Controller {
 
-    // Konfigurasi letak folder untuk upload image
-    private $folder_upload = 'uploads/';
+   // show data review
+   function all_get() {
+       $get_transaksi = $this->db->query("SELECT pemb.id_review,pemb.id_user,pemb.isi_review,pemb.tanggal_review,pemb.id_buku FROM user, review pemb, buku Where pemb.id_user=user.id_user AND pemb.id_buku=buku.id_buku")->result();
 
-    function all_get(){
-         $get_review = $this->db->query("SELECT pemb.id_review,pemb.id_user,pemb.isi_review,pemb.tanggal_review,pemb.id_buku FROM user, review pemb, buku Where pemb.id_user=user.id_user AND pemb.id_buku=buku.id_buku")->result();
-        $this->response(array(
-            "status"=>"success",
-            "result"=>$get_review
-        ));
-    }
+       $this->response(array("status"=>"success","result"=> $get_transaksi));
+   }
 
-    function all_post() {
-
-        $action  = $this->post('action');
-        $data_buku = array(
-                       'id_review' => $this->post('id_review'),
-                       'id_user'       => $this->post('id_user'),
-                       'id_buku'     => $this->post('id_buku'),
-                       'isi_review'      => $this->post('isi_review'),
-                       'tanggal_review'     => $this->post('tanggal_review'));
-
-        switch ($action) {
-            case 'insert':
-                $this->insertReview($data_review);
-                break;
-            
-            case 'update':
-                $this->updateReview($data_review);
-                break;
-            
-            case 'delete':
-                $this->deleteReview($data_review);
-                break;
-            
-            default:
-                $this->response(
-                    array(
-                        "status"  =>"failed",
-                        "message" => "action harus diisi"
-                    )
-                );
-                break;
-        }
-    }
-
-    function insertReview($data_review){
-
-       // Cek validasi
-    if (empty($data_review['id_user']) || empty($data_review['isi_review']) || empty($data_review['tanggal_review']) || empty($data_review['id_buku'])){
-           $this->response(
-               array(
-                   "status" => "failed",
-                   "message" => "Id User / isi review / tanggal review / id buku"
-               )
+   // insert review
+   function all_post() {
+       $data_review = array(
+           'id_review'   => $this->post('id_review'),
+           'id_user'     => $this->post('id_user'),
+           'isi_review'    => $this->post('isi_review'),
+           'tanggal_review'    => $this->post('tanggal_review'),
+           'id_buku'       => $this->post('id_buku')
            );
-       } else {
-
-           $data_buku['photo_url'] = $this->uploadPhoto();
-
-           $do_insert = $this->db->insert('review', $data_review);
+      
+       if  (empty($data_review['id_review'])){
+            $this->response(array('status'=>'fail',"message"=>"id_review kosong"));
+       }
+       else {
+           $getId = $this->db->query("Select id_review from review where id_review='".$data_review['id_review']."'")->result();
           
-           if ($do_insert){
-               $this->response(
-                   array(
-                       "status" => "success",
-                       "result" => array($data_review),
-                       "message" => $do_insert
-                   )
-               );
-            }
+           //jika id_review tidak ada dalam database maka eksekusi insert
+           if (empty($getId)){
+                    if (empty($data_review['id_user'])){
+                       $this->response(array('status'=>'fail',"message"=>"id_user kosong"));
+                    }
+                    else if(empty($data_review['isi_review'])){
+                       $this->response(array('status'=>'fail',"message"=>"isi_review kosong"));
+                    }else if(empty($data_review['id_buku'])){
+                       $this->response(array('status'=>'fail',"message"=>"id_buku kosong"));
+                    }else if(empty($data_review['tanggal_review'])){
+                       $this->response(array('status'=>'fail',"message"=>"tanggal_review kosong"));
+                    }
+                    else{
+                       //jika masuk pada else atau kondisi ini maka dipastikan seluruh input telah di set
+                       //jika akan melakukan review id_user dan id_buku harus dipastikan ada
+                       $getIduser = $this->db->query("Select id_user from user Where id_user='".$data_review['id_user']."'")->result();
+                       $getIdbuku = $this->db->query("Select id_buku from buku Where id_buku='".$data_review['id_buku']."'")->result();
+                       $message="";
+                       if (empty($getIduser)) $message.="id_user tidak ada/salah ";
+                       if (empty($getIdbuku)) {
+                           if (empty($message)) {
+                               $message.="id_buku tidak ada/salah";
+                           }
+                           else {
+                               $message.="dan id_buku tidak ada/salah";
+                           }
+                       }
+                       if (empty($message)){
+                           $insert= $this->db->insert('review',$data_review);
+                           if ($insert){
+                               $this->response(array('status'=>'success','result' => $data_review,"message"=>$insert));   
+                           }
+                          
+                       }else{
+                           $this->response(array('status'=>'fail',"message"=>$message));   
+                       }
+                      
+                    }
+           }else{
+               $this->response(array('status'=>'fail',"message"=>"id_review sudah ada"));
+           }  
        }
-    }
+   }
 
-    function updateBuku($data_buku){
-
-       // Cek validasi
-        if (empty($data_review['id_user']) || empty($data_review['isi_review']) || empty($data_review['tanggal_review']) || empty($data_review['id_buku'])){
-           $this->response(
-               array(
-                   "status" => "failed",
-                   "message" => "Id User / isi review / tanggal review / id buku"
-               )
-           );
-       } else {
-           // Cek apakah ada di database
-           $get_buku_baseID = $this->db->query("
-               SELECT 1
-               FROM review
-               WHERE id_review =  {$data_review['id_review']}")->num_rows();
-
-           if($get_review_baseID === 0){
-               // Jika tidak ada
-               $this->response(
-
-                   array(
-                       "status"  => "failed",
-                       "message" => "ID Review tidak ditemukan"
-                   )
-               );
-           } else {
-               // Jika ada
-               $data_buku['photo_url'] = $this->uploadPhoto();
-
-               if ($data_buku['photo_url']){
-                   // Jika upload foto berhasil, eksekusi update
-                   $update = $this->db->query("
-                       UPDATE buku SET
-                           id_user = '{$data_review['id_user']}',
-                           isi_review = '{$data_review['isi_review']}',
-                           tanggal_review = '{$data_review['tanggal_review']}',
-                           id_buku = '{$data_review['id_buku']}',
-                           photo_url = '{$data_review['photo_url']}'
-                       WHERE id_review = '{$data_review['id_review']}'");
-
-               } else {
-                   // Jika foto kosong atau upload foto tidak berhasil, eksekusi update
-                    $update = $this->db->query("
-                        UPDATE review
-                        SET
-                            id_user    = '{$data_review['id_user']}',
-                            isi_review  = '{$data_review['isi_review']}',
-                            tanggal_review = '{$data_review['tanggal_review']}',
-                            id_buku = '{$data_review['id_buku']}',
-                            photo_url = '{$data_review['photo_url']}'
-                        WHERE id_review = {$data_review['id_review']}"
-                    );
-               }
-              
-               if ($update){
-                   $this->response(
-                       array(
-                           "status"    => "success",
-                           "result"    => array($data_review),
-                           "message"   => $update
-                       )
+   // update data review
+   function all_put() {
+       $data_review = array(
+                   'id_review'    => $this->put('id_review'),
+                   'id_user'      => $this->put('id_user'),
+                   'tanggal_review'    => $this->put('tanggal_review'),
+                   'isi_review'     => $this->put('isi_review'),
+                   'id_buku'        => $this->put('id_buku')
                    );
+       if  (empty($data_review['id_review'])){
+            $this->response(array('status'=>'fail',"message"=>"id_review kosong"));
+       }else{
+           $getId = $this->db->query("Select id_review from review where id_review='".$data_review['id_review']."'")->result();
+           //jika id_review harus ada dalam database
+           if (empty($getId)){
+             $this->response(array('status'=>'fail',"message"=>"id_review tidak ada/salah")); 
+           }else{
+               //jika masuk disini maka dipastikan id_review ada dalam database
+                if (empty($data_review['id_user'])){
+                   $this->response(array('status'=>'fail',"message"=>"id_user kosong"));
                 }
-           }   
-       }
-    }
-
-    function deleteBuku($data_review){
-
-        if (empty($data_review['id_review'])){
-           $this->response(
-               array(
-                   "status" => "failed",
-                   "message" => "ID Review harus diisi"
-               )
-           );
-       } else {
-           // Cek apakah ada di database
-           $get_review_baseID =$this->db->query("
-               SELECT 1
-               FROM buku
-               WHERE id_review= {$data_review['id_review']}")->num_rows();
-
-           if($get_buku_baseID > 0){
-               
-               $get_photo_url =$this->db->query("
-               SELECT photo_url
-               FROM review
-               WHERE id_review= {$data_review['id_review']}")->result();
-           
-                if(!empty($get_photo_url)){
-
-                    // Dapatkan nama file
-                    $photo_nama_file = basename($get_photo_url[0]->photo_url);
-                    // Dapatkan letak file di folder upload
-                    $photo_lokasi_file = realpath(FCPATH . $this->folder_upload . $photo_nama_file);
-                    
-                    // Jika file ada, hapus
-                    if(file_exists($photo_lokasi_file)) {
-                        // Hapus file
-                       unlink($photo_lokasi_file);
+                else if(empty($data_review['isi_review'])){
+                   $this->response(array('status'=>'fail',"message"=>"isi_review kosong"));
+                }else if(empty($data_review['id_buku'])){
+                   $this->response(array('status'=>'fail',"message"=>"id_buku kosong"));
+                }else if(empty($data_review['tanggal_review'])){
+                       $this->response(array('status'=>'fail',"message"=>"tanggal_review kosong"));
+                } 
+                else{
+                   //jika masuk pada else atau kondisi ini maka dipastikan seluruh input telah di set
+                   //jika akan melakukan edit review id_user dan id_buku harus dipastikan ada
+                   $getIduser = $this->db->query("Select id_user from user Where id_user='".$data_review['id_user']."'")->result();
+                       $getIdbuku = $this->db->query("Select id_buku from buku Where id_buku='".$data_review['id_buku']."'")->result();
+                   $message="";
+                   if (empty($getIduser)) $message.="id_user tidak ada/salah ";
+                   if (empty($getIdbuku)) {
+                       if (empty($message)) {
+                           $message.="id_buku tidak ada/salah";
+                       }
+                       else {
+                           $message.="dan id_buku tidak ada/salah";
+                       }
                    }
-
-                   $this->db->query("
-                       DELETE FROM review
-                       WHERE id_review = {$data_review['id_review']}");
-                   $this->response(
-                       array(
-                           "status" => "success",
-                           "message" => "Data ID = " .$data_review['id_review']. " berhasil dihapus"
-                       )
-                   );
-               }
-           
-            } else {
-                $this->response(
-                    array(
-                        "status" => "failed",
-                        "message" => "ID review tidak ditemukan"
-                    )
-                );
-            }
-       }
-    }
-
-    function uploadPhoto() {
-
-        // Apakah user upload gambar?
-        if ( isset($_FILES['photo_url']) && $_FILES['photo_url']['size'] > 0 ){
-
-            // Foto disimpan di android-api/uploads
-            $config['upload_path'] = realpath(FCPATH . $this->folder_upload);
-            $config['allowed_types'] = 'jpg|png';
-
-           // Load library upload & helper
-           $this->load->library('upload', $config);
-           $this->load->helper('url');
-
-           // Apakah file berhasil diupload?
-           if ( $this->upload->do_upload('photo_url')) {
-
-               // Berhasil, simpan nama file-nya
-               // URL image yang disimpan adalah http://localhost/android-api/uploads/namafile
-               $img_data = $this->upload->data();
-               $post_image = base_url(). $this->folder_upload .$img_data['file_name'];
-
-           } else {
-
-               // Upload gagal, beri nama image dengan errornya
-               // Ini bodoh, tapi efektif
-               $post_image = $this->upload->display_errors();
-               
+                   if (empty($message)){
+                       $this->db->where('id_review',$data_review['id_review']);
+                       $update= $this->db->update('review',$data_review);
+                       if ($update){
+                           $this->response(array('status'=>'success','result' => $data_review,"message"=>$update));
+                       }
+                      
+                   }else{
+                       $this->response(array('status'=>'fail',"message"=>$message));   
+                   }
+                }
            }
-       } else {
-           // Tidak ada file yang di-upload, kosongkan nama image-nya
-           $post_image = '';
-       }
 
-       return $post_image;
-    }
-}
+       }
+   }
+
+   // delete review
+   function all_delete() {
+       $id_review = $this->delete('id_review');
+       if (empty($id_review)){
+           $this->response(array('status' => 'fail', "message"=>"id_review harus diisi"));
+       } else {
+           $this->db->where('id_review', $id_review);
+           $delete = $this->db->delete('review');  
+           if ($this->db->affected_rows()) {
+               $this->response(array('status' => 'success','message' =>"Berhasil delete dengan id_review = ".$id_review));
+           } else {
+               $this->response(array('status' => 'fail', 'message' =>"id_review tidak dalam database"));
+           }
+       }
+   }
+}  
