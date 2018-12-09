@@ -115,40 +115,37 @@
         android:orientation="horizontal"
         tools:ignore="UnknownId">
 
-        <!--<Button-->
-            <!--android:id="@+id/btInsert2"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Insert" />-->
+        <Button
+            android:id="@+id/btInsert2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insert" />
 
-        <!--<Button-->
-            <!--android:id="@+id/btUpdate2"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Update" />-->
+        <Button
+            android:id="@+id/btUpdate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update" />
 
-        <ImageView
+        <Button
             android:id="@+id/btDelete2"
-            android:layout_width="129dp"
-            android:layout_height="152dp"
-            android:src="@drawable/delete"
-            android:layout_marginTop="255dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete" />
 
-        <ImageView
+        <Button
             android:id="@+id/btBack"
-            android:layout_width="162dp"
-            android:layout_height="153dp"
-            android:layout_marginTop="255dp"
-            android:src="@drawable/back" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tvMessage2"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
+        android:layout_height="127dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
+        android:layout_alignParentStart="true"
         android:layout_marginBottom="0dp"
         android:inputType="textMultiLine"
         android:text="Pesan Muncul disini"

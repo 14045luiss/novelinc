@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/MenuListReview"
+    <item android:id="@+id/menuListReview"
         android:title="List review"/>
     <item android:id="@+id/menuListBuku"
         android:title="List Buku"/>
-    <item android:id="@+id/menuInsertDataBuku"
-        android:title="Insert Data Buku"/>
-</menu>
+    </menu>

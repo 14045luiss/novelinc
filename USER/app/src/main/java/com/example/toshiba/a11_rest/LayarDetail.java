@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.toshiba.a11_rest.Model.PostPutDelReview;
@@ -20,7 +19,7 @@ import retrofit2.Response;
 public class LayarDetail extends AppCompatActivity {
 
     EditText edtIdReview, edtIdUser, edtidbuku, edtTanggalreview, edtIsireview;
-    ImageView  btDelete, btBack;
+    Button btInsert, btUpdate, btDelete, btBack;
     TextView tvMessage;
     ApiInterface mApiInterface;
     @Override
@@ -36,10 +35,10 @@ public class LayarDetail extends AppCompatActivity {
 
         tvMessage = (TextView) findViewById(R.id.tvMessage2);
 
-//        btInsert = (Button) findViewById(R.id.btInsert2);
-//        btUpdate = (Button) findViewById(R.id.btUpdate2);
-        btDelete = (ImageView) findViewById(R.id.btDelete2);
-        btBack = (ImageView) findViewById(R.id.btBack);
+        btInsert = (Button) findViewById(R.id.btInsert2);
+        btUpdate = (Button) findViewById(R.id.btUpdate2);
+        btDelete = (Button) findViewById(R.id.btDelete2);
+        btBack = (Button) findViewById(R.id.btBack);
 
 
         Intent mIntent = getIntent();
@@ -51,58 +50,58 @@ public class LayarDetail extends AppCompatActivity {
 
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-//        btUpdate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Call<PostPutDelReview> updateReviewCall = mApiInterface.putReview(
-//                        edtIdReview.getText().toString(),
-//                        edtIdUser.getText().toString(),
-//                        edtidbuku.getText().toString(),
-//                        edtTanggalreview.getText().toString(),
-//                        edtIsireview.getText().toString());
-//
-//                updateReviewCall.enqueue(new Callback<PostPutDelReview>() {
-//                    @Override
-//                    public void onResponse(Call<PostPutDelReview> call, Response<PostPutDelReview> response) {
-//                        tvMessage.setText(" Retrofit Update: " +
-//                                "\n " + " Status Update : " +response.body().getStatus() +
-//                                "\n " + " Message Update : "+ response.body().getMessage());
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<PostPutDelReview> call, Throwable t) {
-//                        tvMessage.setText("Retrofit Update: \n Status Update :"+ t.getMessage());
-//                    }
-//                });
-//            }
-//        });
+        btUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<PostPutDelReview> updateReviewCall = mApiInterface.putReview(
+                        edtIdReview.getText().toString(),
+                        edtIdUser.getText().toString(),
+                        edtidbuku.getText().toString(),
+                        edtTanggalreview.getText().toString(),
+                        edtIsireview.getText().toString());
 
-//        btInsert.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Call<PostPutDelReview> postPembelianCall = mApiInterface.postReview(
-//                        edtIdReview.getText().toString(),
-//                        edtIdUser.getText().toString(),
-//                        edtidbuku.getText().toString(),
-//                        edtTanggalreview.getText().toString(),
-//                        edtIsireview.getText().toString());
-//
-//                postPembelianCall.enqueue(new Callback<PostPutDelReview>() {
-//                    @Override
-//                    public void onResponse(Call<PostPutDelReview> call, Response<PostPutDelReview> response) {
-//                        tvMessage.setText(" Retrofit Insert: " +
-//                                "\n " + " Status Insert : " +
-//                                response.body().getStatus() +
-//                                "\n " + " Message Insert : "+ response.body().getMessage());
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<PostPutDelReview> call, Throwable t) {
-//                        tvMessage.setText("Retrofit Insert: \n Status Insert :"+ t.getMessage());
-//                    }
-//                });
-//            }
-//        });
+                updateReviewCall.enqueue(new Callback<PostPutDelReview>() {
+                    @Override
+                    public void onResponse(Call<PostPutDelReview> call, Response<PostPutDelReview> response) {
+                        tvMessage.setText(" Retrofit Update: " +
+                                "\n " + " Status Update : " +response.body().getStatus() +
+                                "\n " + " Message Update : "+ response.body().getMessage());
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostPutDelReview> call, Throwable t) {
+                        tvMessage.setText("Retrofit Update: \n Status Update :"+ t.getMessage());
+                    }
+                });
+            }
+        });
+
+        btInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<PostPutDelReview> postPembelianCall = mApiInterface.postReview(
+                        edtIdReview.getText().toString(),
+                        edtIdUser.getText().toString(),
+                        edtidbuku.getText().toString(),
+                        edtTanggalreview.getText().toString(),
+                        edtIsireview.getText().toString());
+
+                postPembelianCall.enqueue(new Callback<PostPutDelReview>() {
+                    @Override
+                    public void onResponse(Call<PostPutDelReview> call, Response<PostPutDelReview> response) {
+                        tvMessage.setText(" Retrofit Insert: " +
+                                "\n " + " Status Insert : " +
+                                response.body().getStatus() +
+                                "\n " + " Message Insert : "+ response.body().getMessage());
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostPutDelReview> call, Throwable t) {
+                        tvMessage.setText("Retrofit Insert: \n Status Insert :"+ t.getMessage());
+                    }
+                });
+            }
+        });
 
         btDelete.setOnClickListener(new View.OnClickListener() {
             @Override

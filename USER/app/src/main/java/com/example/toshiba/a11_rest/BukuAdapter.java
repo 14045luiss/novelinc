@@ -52,7 +52,7 @@ public class BukuAdapter extends RecyclerView.Adapter<BukuAdapter.BukuViewHolder
 
         public BukuViewHolder(View itemView) {
             super(itemView);
-            mPhotoURL = (ImageView) itemView.findViewById(R.id.imgPhotoId);
+            mPhotoURL = (ImageView) itemView.findViewById(R.id.imgBuku);
             tvIdBuku = (TextView) itemView.findViewById(R.id.tvIdBuku);
             tvJudul = (TextView) itemView.findViewById(R.id.tvJudul);
             tvPenulis = (TextView) itemView.findViewById(R.id.tvPenulis);

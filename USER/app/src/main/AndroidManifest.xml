@@ -24,16 +24,10 @@
         </activity>
         <activity
             android:name=".LayarDetail"
-            android:label="List Revieww" />
+            android:label="List Review" />
         <activity
             android:name=".LayarListBuku"
-            android:label="List Buku" />
-        <activity
-            android:name=".LayarInsertBuku"
-            android:label="Insert Buku" />
-        <activity
-            android:name=".LayarEditBuku"
-            android:label="Edit Buku" />
+            android:label="List buku" />
 
     </application>
 

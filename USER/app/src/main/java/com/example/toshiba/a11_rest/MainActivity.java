@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         Intent mIntent;
         switch (item.getItemId()) {
 
-            case R.id.MenuListReview:
+            case R.id.menuListReview:
                 mIntent = new Intent(this, MainActivity.class);
                 startActivity(mIntent);
                 return true;
@@ -88,10 +88,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuListBuku:
                 mIntent = new Intent(this, LayarListBuku.class);
                 startActivity(mIntent);
-                return true;
-            case R.id.menuInsertDataBuku:
-                Intent intent = new Intent(this, LayarInsertBuku.class);
-                startActivity(intent);
                 return true;
 
 
